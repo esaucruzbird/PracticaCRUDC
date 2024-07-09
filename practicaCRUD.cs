@@ -1,3 +1,67 @@
+/*
+CREATE DATABASE BDpersona;
+
+USE BDpersona;
+
+-- ***** TABLA BÁSICA *****
+
+-- tabla persona
+CREATE TABLE persona (
+id INT PRIMARY KEY IDENTITY(1,1),
+nombre VARCHAR (50),
+edad INT,
+celular VARCHAR(8),
+genero VARCHAR (50),
+trabajo VARCHAR (50),
+fecha DATETIME
+)
+
+-- ejemplo de comillas simples ''
+SELECT * FROM persona;
+
+
+-- ***** TABLAS RELACIONALES *****
+
+-- tabla trabajo
+CREATE TABLE trabajo (
+    id_trabajo INT PRIMARY KEY,
+    descripcion VARCHAR(50)
+);
+
+-- tabla empleado
+CREATE TABLE empleado (
+    id_empleado INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(50),
+    direccion VARCHAR(100),
+    telefono VARCHAR(15),
+    id_trabajo INT,
+    FOREIGN KEY (id_empleado) REFERENCES trabajo(id_trabajo)
+);
+
+-- registros en tabla trabajo
+INSERT INTO trabajo (id_trabajo, descripcion)
+VALUES
+    (1, 'Programador'),
+    (2, 'QA'),
+    (3, 'Analista');
+
+SELECT * FROM trabajo;
+
+-- registros en tabla empleado
+INSERT INTO empleado (nombre, direccion, telefono, id_trabajo)
+VALUES
+    ('Juan Perez', 'Calle Flor 123', '1111-1111', 1),
+    ('Ana Gomez', 'Avenida Principal 456', '2222-2222', 2),
+    ('Luis Martinez', 'Boulevard Central 789', '3333-3333', 3);
+
+SELECT * FROM empleado;
+
+-- listar datos tabla empleado
+SELECT e.id_empleado, e.nombre, e.direccion, e.telefono, t.descripcion AS trabajo
+FROM empleado e
+JOIN trabajo t ON e.id_trabajo = t.id_trabajo;
+*/
+
 public class BDGeneral
     {
         public static SqlConnection obtenerConexion()
